@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Product {
 
@@ -50,7 +51,12 @@ public class Product {
         return products;
     }
 
-    public static void addProduto() {
+     @Override
+    public String toString() {
+        return  "ID: " + id + " Name: " + name + " Price: $" + String.format("%.2f",price);
+    }
+
+    public static void registrarProduto() {
 
         Scanner sc = new Scanner(System.in);
 
@@ -74,8 +80,29 @@ public class Product {
         Menu.menuProduto();
     }
 
+    public static void removerProduto() {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Digite ID do produto deseja remover da lista:");
+        Integer idRemover = sc.nextInt();
+        products.removeIf(product -> product.getId().equals(idRemover));
+
+        Menu.menuProduto();
+    }
+
+    public static void consultaListaProduto () {
+        System.out.println();
+        System.out.println("Lista de produtos registrados: ");
+        for (Product pro : products) {
+            System.out.println(pro);
+        }
+        Menu.menuProduto();
+    }
+
     public static boolean hasId(List<Product>list,Integer id) {
         Product pro = list.stream().filter(x -> x.getId().equals(id)).findFirst().orElse(null);
         return pro != null;
     }
 }
+

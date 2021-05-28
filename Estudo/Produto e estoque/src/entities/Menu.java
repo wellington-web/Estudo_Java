@@ -55,11 +55,13 @@ public class Menu {
             }
         } while (menu <= 0 || menu >= 5);
         if (menu == 1) {
-            Product.addProduto();
+            Product.registrarProduto();
         }
         if (menu == 2) {
+            Product.removerProduto();
         }
         if (menu == 3) {
+            Product.consultaListaProduto();
         }
         if (menu == 4) {
             menuPrincipal();
